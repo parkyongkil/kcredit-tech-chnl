@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="kcredit.tech.chnl.user.UserMapper">
+    <select id="selectUserPage">
+        select * from tech_chnl.user
+        <trim prefix="WHERE" prefixOverrides="AND">
+            <if test="su.no        >  0"><![CDATA[ no = #{su.no}                   ]]></if>
+            <if test="su.name      != null"><![CDATA[ AND name ~ #{su.name}           ]]></if>
+            <if test="su.grade     != null"><![CDATA[ AND grade = #{su.grade}         ]]></if>
+            <if test="su.startDate != null"><![CDATA[ AND reg_date >= #{su.startDate} ]]></if>
+            <if test="su.endDate   != null"><![CDATA[ AND reg_date <= #{su.endDate}   ]]></if>
+        </trim>
+        ORDER BY name
+    </select>
+</mapper>
